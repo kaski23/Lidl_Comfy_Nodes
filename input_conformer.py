@@ -24,7 +24,7 @@ class VideoSizeLengthConformer(ComfyNodeABC):
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "sanitize"
-    CATEGORY = "Video/Conforming"
+    CATEGORY = "LIDL/Video"
 
 
     # -------------------------------------------------------------
@@ -179,7 +179,7 @@ class WanVaceInputConform(ComfyNodeABC):
     RETURN_TYPES = ("IMAGE", "INT", "INT")
     RETURN_NAMES = ("sequence_lengthened", "optimal_width", "optimal_height")
     FUNCTION = "conform"
-    CATEGORY = "Video/Conforming"
+    CATEGORY = "LIDL/Video"
 
     def conform(self, images):
         # --- Ensure tensor ---

@@ -19,7 +19,7 @@ class LoadVideoWithFilename(ComfyNodeABC):
                     {"file": (sorted(files), {"video_upload": True})},
                 }
 
-    CATEGORY = "image/video"
+    CATEGORY = "LIDL/loaders"
 
     # Video-Objekt + Dateiname
     RETURN_TYPES = (IO.VIDEO, "STRING")
@@ -53,7 +53,7 @@ class LoadImageWithFilename:
                     {"image": (sorted(files), {"image_upload": True})},
                 }
 
-    CATEGORY = "image"
+    CATEGORY = "LIDL/loaders"
     RETURN_TYPES = ("IMAGE", "STRING", "MASK")
     FUNCTION = "load_image"
 

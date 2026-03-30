@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 class StringSplitSelect:
     @classmethod
@@ -13,7 +14,7 @@ class StringSplitSelect:
 
     RETURN_TYPES = ("STRING",)
     FUNCTION = "split_and_select"
-    CATEGORY = "string"
+    CATEGORY = "LIDL/stringtools"
 
     def split_and_select(self, text: str, delimiter: str, index: int):
         if not delimiter:
@@ -24,6 +25,40 @@ class StringSplitSelect:
             return (parts[index],)
         else:
             return ("NONE",)
+
+
+class GenerateID:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "film": (["Mood", "Fin", "Gelati", "Saskia",]),
+                "shot_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
+                "pipeline_step": (["firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "lastFrame", "f"]),
+                "frame_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
+            },
+        }
+
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("generated ID",)
+    FUNCTION = "generate"
+    CATEGORY = "LIDL/stringtools"
+    
+    def generate(self, film: str, shot_no: int, pipeline_step: str, frame_no: int):
+        if pipeline_step == "f":
+            pipeline_step = f"f{frame_no}"
+        date_str = self._get_date_string()
+        shot_no_padded =  f"{shot_no:03d}"
+        
+        out = f"{date_str}_{film}_{shot_no_padded}_{pipeline_step}_v"
+        
+        return (out,)
+    
+    @staticmethod
+    def _get_date_string():
+        return datetime.now().strftime("%Y%m%d")
+        
+
 
 
 class ExtractIDFromString:
@@ -38,15 +73,17 @@ class ExtractIDFromString:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("extracted ID",)
     FUNCTION = "extract"
-    CATEGORY = "string"
-    
-    REGEX = r"(\d{8}_\w+_\d{3}_\w+)"
+    CATEGORY = "LIDL/stringtools"
+
+    REGEX = re.compile(r"(_\w+_\d{3}_\w+)")
 
     def extract(self, text: str):
-        match = re.search(self.REGEX, text)
-        
-        if match:
-            return (match.group(1),)
-        else:
-            return ("NO_VALID_ID_FOUND",)
-          
+        date_str = self._get_date_string()
+        match = self.REGEX.search(text)
+
+        suffix = match.group(1) if match else "NO_VALID_ID_FOUND"
+        return (date_str + suffix,)
+
+    @staticmethod
+    def _get_date_string():
+        return datetime.now().strftime("%Y%m%d")
