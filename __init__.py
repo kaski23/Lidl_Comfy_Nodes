@@ -5,20 +5,28 @@ from .string_tools import *
 
 NODE_CLASS_MAPPINGS = {
     "StringSplitSelect_LIDL": StringSplitSelect,
-    "ExtractIDFromString_LIDL": ExtractIDFromString,
+    "ExtractID_LIDL": ExtractIDFromString,
+    "GenerateID_LIDL": GenerateID,
+    "ModifyID_LIDL": ModifyID,
+    
     "VideoSizeLengthConformer_LIDL": VideoSizeLengthConformer,
     "WanVaceInputConform_LIDL": WanVaceInputConform,
+    
     "LoadVideoWithFilename_LIDL": LoadVideoWithFilename,
     "LoadImageWithFilename_LIDL": LoadImageWithFilename,
-    "GenerateID_LIDL": GenerateID,
+    
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "StringSplitSelect_LIDL": "String Split and Select",
-    "ExtractIDFromString_LIDL": "Extract File ID from String",
+    "ExtractID_LIDL": "Extract ID",
+    "GenerateID_LIDL": "Generate ID",
+    "ModifyID_LIDL": "Modify ID",
+    
     "VideoSizeLengthConformer_LIDL": "Conform Video Size and Length",
     "WanVaceInputConform_LIDL": "Conform Video for Wan 2.1",
+    
     "LoadVideoWithFilename_LIDL": "Load Video with Filename",
     "LoadImageWithFilename_LIDL": "Load Image with Filename",
-    "GenerateID_LIDL": "Generate ID"
+    
 }
