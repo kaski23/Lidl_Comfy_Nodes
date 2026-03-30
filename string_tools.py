@@ -32,10 +32,11 @@ class GenerateID:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "film": (["Mood", "Fin", "Gelati", "Saskia",]),
+                "film": (["Mood", "Fin", "Gelati", "Saskia"],),
                 "shot_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
-                "pipeline_step": (["firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "lastFrame", "f"]),
+                "pipeline_step": (["firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "lastFrame", "f"],),
                 "frame_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
+                "version": ("INT", {"default": -1, "min": -1, "max": 10000, "step": 1}),
             },
         }
 
@@ -44,13 +45,20 @@ class GenerateID:
     FUNCTION = "generate"
     CATEGORY = "LIDL/stringtools"
     
-    def generate(self, film: str, shot_no: int, pipeline_step: str, frame_no: int):
+    def generate(self, film: str, shot_no: int, pipeline_step: str, frame_no: int, version: int):
         if pipeline_step == "f":
             pipeline_step = f"f{frame_no}"
+            
+        version_string = ""
+        if version != -1:
+            version_string = f"v{version}"
+        else:
+            version_string = "vN"
+        
         date_str = self._get_date_string()
         shot_no_padded =  f"{shot_no:03d}"
         
-        out = f"{date_str}_{film}_{shot_no_padded}_{pipeline_step}_v"
+        out = f"{date_str}_{film}_{shot_no_padded}_{pipeline_step}_{version_string}"
         
         return (out,)
     
