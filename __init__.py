@@ -2,6 +2,7 @@ from .loaders import *
 from .input_conformer import *
 from .string_tools import *
 from .async_tools import *
+from .api_adaptions import *
 
 
 NODE_CLASS_MAPPINGS = {
@@ -18,6 +19,9 @@ NODE_CLASS_MAPPINGS = {
     
     "AsyncDelay_LIDL": AsyncDelay,
     
+    "NanobananaPro_LIDL": GeminiImage2,
+    "NanobananaSettings_LIDL": GeminiSettings,
+    
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -33,4 +37,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadImageWithFilename_LIDL": "Load Image with Filename",
     
     "AsyncDelay_LIDL": "Async Delay",
+    
+    "NanobananaPro_LIDL": "Nanobanana Pro IO-unlocked",
+    "NanobananaSettings_LIDL": "Nanobanana Settings",
 }
