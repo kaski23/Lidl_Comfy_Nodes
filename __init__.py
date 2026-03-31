@@ -1,6 +1,7 @@
 from .loaders import *
 from .input_conformer import *
 from .string_tools import *
+from .async_tools import *
 
 
 NODE_CLASS_MAPPINGS = {
@@ -14,6 +15,8 @@ NODE_CLASS_MAPPINGS = {
     
     "LoadVideoWithFilename_LIDL": LoadVideoWithFilename,
     "LoadImageWithFilename_LIDL": LoadImageWithFilename,
+    
+    "AsyncDelay_LIDL": AsyncDelay,
     
 }
 
@@ -29,4 +32,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadVideoWithFilename_LIDL": "Load Video with Filename",
     "LoadImageWithFilename_LIDL": "Load Image with Filename",
     
+    "AsyncDelay_LIDL": "Async Delay",
 }
