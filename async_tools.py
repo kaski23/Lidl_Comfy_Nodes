@@ -7,7 +7,7 @@ class AsyncDelay(ComfyNodeABC):
         return {
             "required": {
                 "image": ("IMAGE", {"tooltip": "The images to preview."}),
-                "delay": ("INT", {"default": 50, "min": 0, "max": 1000})
+                "delay": ("INT", )
             }
         }
 
@@ -16,6 +16,6 @@ class AsyncDelay(ComfyNodeABC):
     CATEGORY = "LIDL/async"
 
     async def run(self, image, delay):
-        delay = delay / 1000.0
+        delay = max(0, delay) / 1000.0
         await asyncio.sleep(delay)
         return (image,)
