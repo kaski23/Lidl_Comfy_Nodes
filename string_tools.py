@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 REGEX_ID =  re.compile(
-        r"\d{8}_(Mood|Fin|Gelati|Saskia)_\d{3}_(firstFrame|notEnhanced|enhanced|cgDepth|cgNormal|lastFrame|f\d+)_(v\d+|vN)"
+        r"\d{8}_(Mood|Fin|Gelati|Saskia)_\d{3}_(firstFrame|notEnhanced|enhanced|cgDepth|cgScribble|cgNormal|lastFrame|f\d+)_(v\d+|vN)"
     )
 
 class StringSplitSelect:
@@ -38,7 +38,7 @@ class GenerateID:
             "required": {
                 "film": (["Mood", "Fin", "Gelati", "Saskia"],),
                 "shot_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
-                "pipeline_step": (["firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "lastFrame", "f"],),
+                "pipeline_step": (["firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "cgScribble", "lastFrame", "f"],),
                 "frame_no": ("INT", {"default": 0, "min": 0, "max": 10000, "step": 1}),
                 "version": ("INT", {"default": -1, "min": -1, "max": 10000, "step": 1}),
             },
@@ -83,7 +83,7 @@ class ModifyID:
                 "update_date": ("BOOLEAN", {"default": True}),
                 "film": (["KEEP", "Mood", "Fin", "Gelati", "Saskia"],),
                 "shot_no": ("INT", {"default": -1, "min": -1, "max": 10000, "step": 1}),
-                "pipeline_step": (["KEEP", "firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "lastFrame", "f"],),
+                "pipeline_step": (["KEEP", "firstFrame", "notEnhanced", "enhanced", "cgDepth", "cgNormal", "cgScribble", "lastFrame", "f"],),
                 "frame_no": ("INT", {"default": -1, "min": -1, "max": 10000, "step": 1}),
                 "version": ("INT", {"default": -1, "min": -1, "max": 10000, "step": 1}),
             },
